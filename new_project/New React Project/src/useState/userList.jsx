@@ -1,18 +1,13 @@
 import React, { useState } from "react";
 
 export default function UserList() {
-  const [formData, setFormData] = useState({
-    Name: "",
-    Address: "",
-    Phone: "",
-  });
-
+  const [formData, setFormData] = useState({});
+console.log(formData);
   const handleChange = (param) =>{
-    param.target.value;
-
+    setFormData((prev)=> ({...prev,[param.target.name]:param.target.value}));
   }
-  const handleAdd = (param) => {
-    param.target.value;
+  const handleAdd = (e) => {
+
   };
   return (
     <>
@@ -40,10 +35,10 @@ export default function UserList() {
         </label>
         <br />
         <label>
-          Age:
+          Phone:
           <input
             type="number"
-            name="age"
+            name="phone"
             value={formData.age}
             onChange={handleChange}
             required
