@@ -1,4 +1,7 @@
 import './App.css'
+import FilterSearch from './hooks/useEffect/filterSearch';
+import List from './hooks/useEffect/list';
+import Search from './hooks/useEffect/search';
 import Animal from './useState/animal';
 import Bulb from './useState/bulb';
 import Color from './useState/color';
@@ -19,8 +22,11 @@ function App() {
         {/* <Input/> */}
         {/* <Color/> */}
         {/* <CountryCapital/> */}
-        <UserList/>
-    </>
+        {/* <UserList/> */}
+        {/* <List/> */}
+        {/* <Search/> */}
+        <FilterSearch/>
+        </>
   )
 }
 
