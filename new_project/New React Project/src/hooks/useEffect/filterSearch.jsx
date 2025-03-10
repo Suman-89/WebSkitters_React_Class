@@ -1,10 +1,10 @@
-/* eslint-disable no-unused-vars */
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 export default function FilterSearch() {
   const [data, setData] = useState([]);
-  const []
+  const [dataInput, setDataInput] = useState('');
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     axios("https://dummyjson.com/products")
@@ -17,6 +17,22 @@ export default function FilterSearch() {
 
   //   const showData = () => {};
 
+  const handleChange = (e) =>{
+    setDataInput(e.target.value)
+  }
+
+  useEffect(()=>{
+    setSearch(dataInput);
+    console.log('Search -->',search);
+    
+  },[search])
+
+  const handleClick = () =>{
+    setSearch(dataInput);
+    // console.log('Search -->',search);
+  }
+
+
   return (
     <>
       <h2>Search by filter method</h2>
@@ -28,11 +44,14 @@ export default function FilterSearch() {
           placeholder="Search here..."
           aria-label="Recipient's username"
           aria-describedby="button-addon2"
+          value={dataInput}
+          onChange={handleChange}
         />
         <button
           className="btn btn-info"
           type="button"
           id="button-addon2"
+          onClick={handleClick}
         >
           Search
         </button>
