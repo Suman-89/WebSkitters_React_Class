@@ -1,5 +1,8 @@
 import './App.css'
+import ArraySearch from './hooks/useEffect/arraySearch';
+import Debounce from './hooks/useEffect/Debounce';
 import FilterSearch from './hooks/useEffect/filterSearch';
+import InputChange from './hooks/useEffect/inputChange';
 import List from './hooks/useEffect/list';
 import Search from './hooks/useEffect/search';
 import Animal from './useState/animal';
@@ -25,7 +28,10 @@ function App() {
         {/* <UserList/> */}
         {/* <List/> */}
         {/* <Search/> */}
-        <FilterSearch/>
+        {/* <FilterSearch/> */}
+        {/* <Debounce/> */}
+        {/* <InputChange/> */}
+        <ArraySearch/>
         </>
   )
 }

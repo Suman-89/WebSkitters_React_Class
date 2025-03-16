@@ -3,35 +3,50 @@ import React, { useEffect, useState } from "react";
 
 export default function FilterSearch() {
   const [data, setData] = useState([]);
-  const [dataInput, setDataInput] = useState('');
-  const [search, setSearch] = useState('');
+  const [dataInput, setDataInput] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     axios("https://dummyjson.com/products")
       .then((res) => {
-        // console.log(res.data.products);
+        // console.log("DATA--> ", res.data.products);
         setData(res.data.products);
+        setDataInput(res.data.products);
       })
       .catch((err) => console.log(err));
-  },[]);
+  }, []);
 
   //   const showData = () => {};
 
-  const handleChange = (e) =>{
-    setDataInput(e.target.value)
-  }
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+    // console.log('e ---> ',e.target.value);
+  };
 
-  useEffect(()=>{
-    setSearch(dataInput);
-    console.log('Search -->',search);
-    
-  },[search])
-
-  const handleClick = () =>{
-    setSearch(dataInput);
+  useEffect(() => {
     // console.log('Search -->',search);
-  }
+    const delayTimer = setTimeout(()=>{
+      if (search) {
+        const caseChange = search.toLowerCase();
+        const filterList = data.filter(
+          (fData) =>
+            fData.brand.toLowerCase().includes(caseChange) ||
+            fData.category.toLowerCase().includes(caseChange)
+        );
+        setDataInput(filterList);
+      } else {
+        setDataInput(data);
+      }
+    },500);
 
+    return () => clearTimeout(delayTimer);
+  }, [search, data]);
+
+  const handleClick = () => {
+    // console.log('Search -->',search);
+  };
+
+  console.log("Search-->", dataInput);
 
   return (
     <>
@@ -44,7 +59,7 @@ export default function FilterSearch() {
           placeholder="Search here..."
           aria-label="Recipient's username"
           aria-describedby="button-addon2"
-          value={dataInput}
+          value={search}
           onChange={handleChange}
         />
         <button
@@ -70,8 +85,8 @@ export default function FilterSearch() {
             </tr>
           </thead>
           <tbody>
-            {Array.isArray(data) &&
-              data.map((v) => {
+            {
+              dataInput.map((v) => {
                 return (
                   <tr key={v.id}>
                     <th scope="row">{v.id}</th>
