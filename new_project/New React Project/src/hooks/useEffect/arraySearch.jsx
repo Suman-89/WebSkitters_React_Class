@@ -11,9 +11,13 @@ export default function ArraySearch() {
 
   const handleClick = () =>{
   console.log("ip = ", input);
-  setVdata(p => ({...p,input}))
-//   console.log('vdata = ',vdata)
+  setVdata(p => ({...p,...input}))
+
   }
+  console.log('vdata = ',typeof vdata)
+  console.log('vdata = ',vdata)
+
+
   return (
     <>
       <section>
