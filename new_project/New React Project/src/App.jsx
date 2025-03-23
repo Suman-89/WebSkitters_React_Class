@@ -1,4 +1,8 @@
 import './App.css'
+import Address from './hooks/useContext/address';
+import Child from './hooks/useContext/child';
+import Parent from './hooks/useContext/parent';
+import Phone from './hooks/useContext/phone';
 import ArraySearch from './hooks/useEffect/arraySearch';
 import Debounce from './hooks/useEffect/Debounce';
 import FilterSearch from './hooks/useEffect/filterSearch';
@@ -31,7 +35,12 @@ function App() {
         {/* <FilterSearch/> */}
         {/* <Debounce/> */}
         {/* <InputChange/> */}
-        <ArraySearch/>
+        {/* <ArraySearch/> */}
+        <Parent>
+          <Child/>
+          {/* <Phone/> */}
+          {/* <Address/> */}
+        </Parent>
         </>
   )
 }
