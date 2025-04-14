@@ -37,7 +37,7 @@ function App() {
       {/* <FilterSearch/> */}
       {/* <Debounce/> */}
       {/* <InputChange/> */}
-      {/* <ArraySearch/> */}
+      <ArraySearch/>
       {/* <Parent> */}
       {/* <Child/> */}
       {/* <Phone/> */}
@@ -54,7 +54,7 @@ function App() {
         </Router>
       </Parent> */}.
 
-      <Parent/>
+      {/* <Parent/> */}
 
     </>
   )
