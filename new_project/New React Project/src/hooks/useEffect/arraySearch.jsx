@@ -8,7 +8,7 @@ export default function ArraySearch() {
     address: ""
   });
   const [vdata, setVdata] = useState([]);
-  const [view, setView] = useState({ user: '', mail: '', address: '' });
+  const [view, setView] = useState({});
   // const [myList, setMyList] = useState([]);
   console.log(view, "view");
 
@@ -17,7 +17,7 @@ export default function ArraySearch() {
     if (list) {
       const userList = JSON.parse(list);
       setVdata(userList);
-      userList.map(v=>setView(v));
+      // userList.map(v=>setView(v));
     }
   }, []);
 
@@ -35,7 +35,8 @@ export default function ArraySearch() {
   }
 
   const viewData = (view) => {
-    console.log(view, 'view');
+    // console.log(view, 'view');
+    setView(view);
   }
 
   const editData = (eData) => {
@@ -99,6 +100,7 @@ export default function ArraySearch() {
             {
               Array.isArray(vdata) && vdata.map((v, index) => {
                 return (
+                  <>
                   <tbody key={v.id}>
                     <tr onClick={() => viewData(v)} data-bs-toggle="modal" data-bs-target="#exampleModal">
                       <th scope="row">{index + 1}</th>
@@ -110,13 +112,16 @@ export default function ArraySearch() {
                       </td>
                     </tr>
                   </tbody>
+                  </>
                 )
               })
             }
           </table>
         </section>
         {/* Modal element */}
-        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        
+      </>) : (<></>)}
+      <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
@@ -126,19 +131,18 @@ export default function ArraySearch() {
               <div className="modal-body">
                 <div className="input-group">
                   {/* <span className="input-group-text">First and last name</span> */}
-                  <input type="text" placeholder="Name" aria-label="Username" className="form-control" onChange={(e) => setView({ ...view, user: e.target.value })} value={view.user} />
-                  <input type="text" placeholder="Email" aria-label="Email" className="form-control" onChange={(e) => setView({ ...view, mail: e.target.value })} value={view.mail} />
+                  <input type="text" placeholder="Name" aria-label="Username" className="form-control" onChange={(e) => setView({ ...view, uname: e.target.value })} value={view.uname} />
+                  <input type="text" placeholder="Email" aria-label="Email" className="form-control" onChange={(e) => setView({ ...view, email: e.target.value })} value={view.email} />
                   <input type="text" placeholder="Place" aria-label="Place" className="form-control" onChange={(e) => setView({ ...view, address: e.target.value })} value={view.address} />
                 </div>
               </div>
-              <div className="modal-footer">
+              <div className="modal-footer">  
                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" className="btn btn-primary">Save changes</button>
               </div>
             </div>
           </div>
         </div>
-      </>) : (<></>)}
     </>
   );
 }
